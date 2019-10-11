@@ -1,0 +1,16 @@
+target=JudgeClient
+cc=g++
+object=JudgeClient.o Compare.o Database.o
+INCLUDE=-I/usr/local/mysql/include/mysql -I/usr/include/mysql
+LIBARARY=-L/usr/local/mysql/lib/mysql -L/usr/lib/mysql  -L/usr/lib64/mysql  -lmysqlclient
+$(target): $(object)
+	$(cc) -o $(target) $(object) $(LIBARARY)
+JudgeClient.o: Compare.h JudgeClient.cpp
+	$(cc) -c JudgeClient.cpp $(INCLUDE)
+Database.o: Database.cpp
+	$(cc) -c Database.cpp $(INCLUDE)
+Compare.o: Compare.cpp
+	$(cc) -c Compare.cpp
+.PHONY:clean
+clean:
+	rm -f $(object)
