@@ -54,7 +54,7 @@
           label="正确"
           width="80">
           <template slot-scope="scope">
-            <span style="margin-left: 10px">{{ scope.row.accepted }}</span>
+            <span style="margin-left: 10px">{{ scope.row.solved }}</span>
           </template>
         </el-table-column>
       </el-table>

@@ -28,7 +28,7 @@ class Language extends Base
     public function getLanguageList() {
         $result = $this->Model
             ->order('lid', 'asc')
-            ->field(['lid', 'title'])
+            ->field(['lid', 'title', 'cmd'])
             ->select();
         $count = $this->Model->count();
         $ret = [

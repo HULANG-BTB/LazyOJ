@@ -168,9 +168,6 @@ int main() {
     
     while (true) {
         working();
-
-
-        cout << "等待：" << option["LAZYOJ_SLEEP_TIME"] << " S" << endl;
         sleep(atoi(option["LAZYOJ_SLEEP_TIME"].c_str()));
     }
 

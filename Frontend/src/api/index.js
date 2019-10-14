@@ -3,6 +3,7 @@
 */
 
 import ajax from './ajax'
+import captcha from "./captcha";
 
 const BASE_URL = '/api'
 
@@ -16,6 +17,8 @@ export const reqCategoryList = () => ajax(BASE_URL + `/api/Category/getCategoryL
 export const reqStatusList = (query) => ajax(BASE_URL + `/api/Status/getStatusList`, 'POST', query)
 // 提交登录表单
 export const reqLoginSubmit = (query) => ajax(BASE_URL + `/api/login/login`, 'POST', query)
+// 提交注册表单
+export const reqRegisterSubmit = (query) => ajax(BASE_URL + `/api/login/register`, 'POST', query)
 // 获取用户信息
 export const reqUserInfo = () => ajax(BASE_URL + `/api/User/getUserInfo`)
 // 请求注销登录
@@ -26,3 +29,5 @@ export const reqRankList = (query) => ajax(BASE_URL + `/api/Rank/getRankList`, '
 export const reqContestList = (query) => ajax(BASE_URL + `/api/Contest/getContestList`, 'POST', query)
 // 提交题目内容
 export const reqProblemSubmit = (query) => ajax(BASE_URL + `/api/Status/insert`, 'POST', query)
+// 请求验证码图片
+export const reqCaptchaImg = (query) => captcha(BASE_URL + `/api/Login/captchaCode/t/` + query)

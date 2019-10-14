@@ -226,7 +226,7 @@ namespace lazyoj {
     }
 
     void Database::changeToBUILD(string solutionId) {
-        this->sstream << "UPDATE `solution` SET `result`=1 WHERE `sid`=" << solutionId;
+        this->sstream << "UPDATE `solution` SET `result`=2 WHERE `sid`=" << solutionId;
         this->sql = sstream.str();
         this->sstream.str("");
         mysql_real_query(this->mysqlConn, this->sql.c_str(), this->sql.size());

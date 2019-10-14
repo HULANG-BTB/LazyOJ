@@ -7,4 +7,5 @@ use think\Model;
 class Option extends Model
 {
     //
+    protected $pk = 'key';
 }

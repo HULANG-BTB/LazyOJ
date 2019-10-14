@@ -126,6 +126,10 @@ void makeWorkDir() {
     LAZYOJ_DIR_HOME = buff;
     LAZYOJ_DIR_WORK = LAZYOJ_DIR_HOME + "/run/node_" + LAZYOJ_RUN_NID;
     LAZYOJ_DIR_DATA = LAZYOJ_DIR_HOME + "/data/" + problem["pid"];
+    if (LAZYOJ_DIR_WORK.find("run") == LAZYOJ_DIR_WORK.npos) {
+        cout << "初始化目录失败...." << endl;
+        exit(0);
+    }
     run_cmd_format("mkdir -p %s", LAZYOJ_DIR_WORK.c_str());
     run_cmd_format("rm -rf %s/*", LAZYOJ_DIR_WORK.c_str());
     // 改变工作目录
@@ -523,7 +527,7 @@ void judge_solution() {
     DB->changeToBUILD(solution["sid"]);
     bool status = compile_solution();
     if (!status) {
-        LAZYOJ_RUN_RESULT = "CE";
+        LAZYOJ_RUN_RESULT = LAZYOJ_RUN_ALL_RESULT = "CE";
         update_solution();
         cout << "编译程序失败..." << endl;
         return;

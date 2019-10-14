@@ -30,94 +30,49 @@
         </el-submenu>
       </el-menu>
     </div>
-    <el-dialog
-      title="登录"
-      :visible.sync="loginDialogVisible"
-      width="30%"
-      center>
-      <el-form :model="loginForm" label-width="100px">
-        <el-form-item label="用户名">
-          <el-input v-model="loginForm.username" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="密码">
-          <el-input v-model="loginForm.password" autocomplete="off" type="password"></el-input>
-        </el-form-item>
-        <el-form-item label="验证码">
-          <el-input v-model="loginForm.captcha">
-            <template slot="append"><img src="http://lazyoj.cn/api/login/captchaCode" alt="" height="34px" @click="getCaptcha"></template>
-          </el-input>
-        </el-form-item>
-      </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="loginSubmit">登 录</el-button>
-        <el-button @click="loginDialogVisible = false">取 消</el-button>
-      </span>
-    </el-dialog>
-    <el-dialog
-      title="注册"
-      :visible.sync="registerDialogVisible"
-      width="30%"
-      center>
-      <span>这是一段信息</span>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="registerDialogVisible = false">登 录</el-button>
-        <el-button @click="registerDialogVisible = false">取 消</el-button>
-      </span>
-    </el-dialog>
+    <Login v-model="loginDialogVisible"></Login>
+    <Register v-model="registerDialogVisible"></Register>
   </div>
 </template>
 
 <script>
-import {
-  mapState,
-  mapActions
-} from 'vuex'
-import {
-  reqLoginSubmit,
-  reqLogoutSubmit
-} from '../../api'
-export default {
-  data () {
-    return {
-      loginDialogVisible: false,
-      registerDialogVisible: false,
-      loginForm: {
-        username: '',
-        password: '',
-        captcha: ''
-      }
-    }
-  },
-  computed: {
-    ...mapState(['userInfo']),
-    loginStatus () {
-      return this.userInfo
-    }
-  },
-  methods: {
-    ...mapActions(['getUserInfo']),
-    async loginSubmit () {
-      // this.loginDialogVisible = false
-      const result = await reqLoginSubmit({username: this.loginForm.username, password: this.loginForm.password, captcha: this.loginForm.captcha})
-      if (result.code === 1) {
-        this.$message('登录成功')
-        this.loginDialogVisible = false
-        this.getUserInfo()
+  import Login from "../Login/Login";
+  import Register from "../Login/Register";
+  import {
+    mapState,
+    mapActions
+  } from 'vuex'
+  import {
+    reqLogoutSubmit
+  } from '../../api'
+  export default {
+    data () {
+      return {
+        loginDialogVisible: false,
+        registerDialogVisible: false,
       }
     },
-    async logoutSubmit () {
-      const result = await reqLogoutSubmit()
-      if (result.code === 1) {
-        this.$message('注销成功')
-        this.getUserInfo()
-        this.$router.refresh()
+    computed: {
+      ...mapState(['userInfo']),
+      loginStatus () {
+        return this.userInfo
       }
     },
-    getCaptcha (event) {
-      event.target.src = 'http://lazyoj.cn/api/login/captchaCode?t=' + Math.random()
+    methods: {
+      ...mapActions(['getUserInfo']),
+      async logoutSubmit () {
+        const result = await reqLogoutSubmit()
+        if (result.code === 1) {
+          this.$message('注销成功')
+          this.getUserInfo({})
+        }
+      }
+    },
+    components: {
+      Login,
+      Register
     }
   }
-}
 </script>
 
 <style scoped>

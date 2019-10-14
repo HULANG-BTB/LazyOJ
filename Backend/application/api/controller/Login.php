@@ -138,6 +138,7 @@ class Login extends Base
         $rule = [
             'username|用户名' => 'require|min:5|max:20',
             'password|密码' => 'require|min:6|max:20',
+            'repassword|重复密码' => 'require|confirm:password',
             'email|邮箱' => 'require|email',
             'school|学校' => 'max:25',
             'captcha|验证码' => 'require|captcha'
@@ -160,7 +161,8 @@ class Login extends Base
         $user = $this->Model
             ->where(['username' => $username])
             ->count();
-        $identify = \app\api\model\Option::get('identify');
+        $identifyModel = new \app\api\model\Option();
+        $identify = $identifyModel->get('identify');
 
         /**
          * 用户是否存在
@@ -175,19 +177,18 @@ class Login extends Base
          */
         $user = $this->request->post();
         $user['password'] = $this->encryptPassword($password);
-        $user['identify'] = $identify;
+        $user['identify'] = $identify->value;
         $user['create_ip'] = $user['login_ip'] = get_client_ipaddress();
         $result = $this->Model->save($user);
         if ($result) {
             $ret['msg'] = '注册成功！';
-            Session::set('uid', $user->uid);
+            Session::set('uid', $this->Model->uid);
             $ret['code'] = 1;
             return json($ret);
         } else {
             $ret['msg'] = '注册失败，请稍后再试！';
             return json($ret);
         }
-
     }
 
     /**
