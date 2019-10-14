@@ -10,7 +10,8 @@ import {
   RECEIVE_STATUS_LIST,
   RECEIVE_USER_INFO,
   RECEIVE_RANK_LIST,
-  RECEIVE_CONTEST_LIST
+  RECEIVE_CONTEST_LIST,
+  RECEIVE_LANGUAGE_LIST
 } from './mutation-types'
 import {
   reqProblemList,
@@ -19,7 +20,8 @@ import {
   reqStatusList,
   reqUserInfo,
   reqRankList,
-  reqContestList
+  reqContestList,
+  reqLanguageList
 } from '../api'
 
 export default {
@@ -94,6 +96,15 @@ export default {
     if (result.code === 1) {
       const contestList = result.data
       commit(RECEIVE_CONTEST_LIST, {contestList})
+      // 提交一个mutation
+    }
+  },
+  // 异步获取语言列表
+  async getLanguageList ({commit}, query) {
+    const result = await reqLanguageList(query)
+    if (result.code === 1) {
+      const languageList = result.data
+      commit(RECEIVE_LANGUAGE_LIST, {languageList})
       // 提交一个mutation
     }
   }

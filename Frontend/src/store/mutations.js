@@ -10,7 +10,8 @@ import {
   RECEIVE_STATUS_LIST,
   RECEIVE_USER_INFO,
   RECEIVE_RANK_LIST,
-  RECEIVE_CONTEST_LIST
+  RECEIVE_CONTEST_LIST,
+  RECEIVE_LANGUAGE_LIST
 } from './mutation-types'
 
 export default {
@@ -37,5 +38,9 @@ export default {
   },
   [RECEIVE_CONTEST_LIST] (state, {contestList}) {
     state.contestList = contestList
+  },
+  [RECEIVE_LANGUAGE_LIST] (state, {languageList}) {
+    state.languageList = languageList
   }
 }
+

@@ -2,14 +2,14 @@
   <el-container>
     <el-header :style="{height: 'initial'}">
       <h2>{{ problemInfo.pid + ' : ' + problemInfo.title }}</h2>
-      <h5>时间: {{ problemInfo.time_limit }} s 内存: {{ problemInfo.memory_limit }} MB</h5>
+      <h5>时间: {{ problemInfo.time }} s 内存: {{ problemInfo.memory }} MB</h5>
     </el-header>
     <el-main>
-      <Editor v-model="formData"></Editor>
+      <Editor v-model="formData" :languages="languageList.data"></Editor>
     </el-main>
     <el-footer :style="{height: 'initial'}">
-      <el-button type="primary" @click.prevent="redirect('submit')">提交代码</el-button>
-      <el-button type="primary" @click.prevent="redirect('status')">提交状态</el-button>
+      <el-button type="primary" @click.prevent="goTo('submit')">提交代码</el-button>
+      <el-button type="primary" @click.prevent="goTo('status')">提交状态</el-button>
     </el-footer>
   </el-container>
 </template>
@@ -29,21 +29,22 @@ export default {
       id: this.$route.query.id,
       formData: {
         code: '',
-        language: 'c'
+        language: 1
       }
     }
   },
   computed: {
-    ...mapState(['problemInfo', 'userInfo'])
+    ...mapState(['problemInfo', 'userInfo', 'languageList'])
   },
   methods: {
-    ...mapActions(['getProblemInfo']),
-    redirect (type) {
+    ...mapActions(['getProblemInfo', 'getLanguageList']),
+    goTo (type) {
       if (type === 'submit') {
         if (!this.userInfo.username) {
           this.$message('请先登录！')
         } else {
           this.submit()
+          console.log(this.formData)
         }
       } else {
         this.$router.replace({name: 'ProblemDetail'})
@@ -68,6 +69,7 @@ export default {
   },
   mounted () {
     this.getProblemInfo({id: this.id})
+    this.getLanguageList({})
   },
   components: {
     Editor

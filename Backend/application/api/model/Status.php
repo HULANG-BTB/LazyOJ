@@ -52,9 +52,4 @@ class Status extends Model
         return $language->get($value)->title;
     }
 
-    public function setLanguageAttr($value) {
-        $language = new Language();
-        return $language->where(['title' => $value])->find()->lid;
-    }
-
 }

@@ -5,5 +5,6 @@ export default {
   contestList: [],
   problemList: [],
   problemInfo: {},
-  userInfo: {}
+  userInfo: {},
+  languageList: {}
 }

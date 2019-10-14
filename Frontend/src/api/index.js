@@ -13,6 +13,8 @@ export const reqProblemList = (query) => ajax(BASE_URL + `/api/Problem/getProble
 export const reqProblemInfo = (query) => ajax(BASE_URL + `/api/Problem/getProblemInfo`, 'POST', query)
 // 获取分类列表
 export const reqCategoryList = () => ajax(BASE_URL + `/api/Category/getCategoryList`)
+// 请求语言列表
+export const reqLanguageList = (query) => ajax(BASE_URL + `/api/Language/getLanguageList`)
 // 获取状态列表
 export const reqStatusList = (query) => ajax(BASE_URL + `/api/Status/getStatusList`, 'POST', query)
 // 提交登录表单
