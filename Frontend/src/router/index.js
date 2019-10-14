@@ -10,6 +10,11 @@ export default new Router({
             redirect: '/Environment'
         },
         {
+            path: '/Environment',
+            name: 'Environment',
+            component: () => import('@/views/Environment/Environment.vue')
+        },
+        {
             path: '/Problem',
             name: 'Problem',
             component: () => import('@/views/Problem/Problem.vue'),
@@ -36,6 +41,26 @@ export default new Router({
                 {
                     path: '/',
                     redirect: '/Problem/list',
+                }
+            ]
+        },
+        {
+            path: '/Status',
+            name: 'Status',
+            component: () => import('@/views/Status/Status.vue'),
+            children: [
+                {
+                    path: '/Status/List',
+                    name: 'StatusList',
+                    component: () => import('@/views/Status/List.vue')
+                },
+                {
+                    path: '/Status',
+                    redirect: '/Status/List',
+                    query: {
+                        page: 1,
+                        limit: 10
+                    }
                 }
             ]
         }

@@ -58,7 +58,7 @@ export default {
       if (direct === 'submit') {
         this.$router.push({name: 'ProblemSubmit', query: {id: this.id}})
       } else if (direct === 'status') {
-        this.$router.push({name: 'ProblemStatus', query: {id: this.id}})
+        this.$router.push({name: 'StatusList', query: {id: this.id}})
       }
     }
   },

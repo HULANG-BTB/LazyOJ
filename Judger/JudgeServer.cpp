@@ -3,6 +3,7 @@
 #include <string>
 #include <unistd.h>
 #include <wait.h>
+#include <sys/resource.h>
 #include <set>
 
 #include "Database.h"
@@ -96,7 +97,13 @@ void working() {
         int sid = atoi(it->first.c_str());
         pid_t pidRunner = fork();
         if (pidRunner == 0) {
+            struct rlimit LIMIT;
+            LIMIT.rlim_cur = 30;
+            LIMIT.rlim_max = 30;
+            setrlimit(RLIMIT_CPU, &LIMIT);
+            alarm(30);
             run_cmd_format("./JudgeClient %s %d", it->first.c_str(), count);
+            exit(0);
         } else {
             cout << "任务号: " << count << endl;
             cout << "Pid: " << pidRunner << endl;

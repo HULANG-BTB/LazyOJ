@@ -154,7 +154,7 @@ namespace lazyoj {
     }
 
     void Database::changeToPE(string solutionId, long long time_used, long long memory_used, string runTimeInfo, double passRate) {
-        this->sstream << "UPDATE `solution` SET `result`=5, `time`='" << time_used << "', `memory`='" << memory_used << "', `pass_rate`='" << passRate << "' WHERE `sid`=" << solutionId;
+        this->sstream << "UPDATE `solution` SET `result`=5, `time`='" << time_used << "', `memory`='" << memory_used << "', `pass_rate`='" << passRate << "', `compile_info`='" << runTimeInfo << "' WHERE `sid`=" << solutionId;
         this->sql = sstream.str();
         this->sstream.str("");
         mysql_real_query(this->mysqlConn, this->sql.c_str(), this->sql.size());
@@ -162,7 +162,7 @@ namespace lazyoj {
     }
 
     void Database::changeToWA(string solutionId, long long time_used, long long memory_used, string runTimeInfo, double passRate) {
-        this->sstream << "UPDATE `solution` SET `result`=6, `time`='" << time_used << "', `memory`='" << memory_used << "', `pass_rate`='" << passRate << "' WHERE `sid`=" << solutionId;
+        this->sstream << "UPDATE `solution` SET `result`=6, `time`='" << time_used << "', `memory`='" << memory_used << "', `pass_rate`='" << passRate << "', `compile_info`='" << runTimeInfo << "' WHERE `sid`=" << solutionId;
         this->sql = sstream.str();
         this->sstream.str("");
         mysql_real_query(this->mysqlConn, this->sql.c_str(), this->sql.size());
@@ -170,7 +170,7 @@ namespace lazyoj {
     }
 
     void Database::changeToTLE(string solutionId, long long time_used, long long memory_used, string runTimeInfo, double passRate) {
-        this->sstream << "UPDATE `solution` SET `result`=7, `time`='" << time_used << "', `memory`='" << memory_used << "', `pass_rate`='" << passRate << "' WHERE `sid`=" << solutionId;
+        this->sstream << "UPDATE `solution` SET `result`=7, `time`='" << time_used << "', `memory`='" << memory_used << "', `pass_rate`='" << passRate << "', `compile_info`='" << runTimeInfo << "' WHERE `sid`=" << solutionId;
         this->sql = sstream.str();
         this->sstream.str("");
         mysql_real_query(this->mysqlConn, this->sql.c_str(), this->sql.size());
@@ -178,7 +178,7 @@ namespace lazyoj {
     }
 
     void Database::changeToMLE(string solutionId, long long time_used, long long memory_used, string runTimeInfo, double passRate) {
-        this->sstream << "UPDATE `solution` SET `result`=8, `time`='" << time_used << "', `memory`='" << memory_used << "', `pass_rate`='" << passRate << "' WHERE `sid`=" << solutionId;
+        this->sstream << "UPDATE `solution` SET `result`=8, `time`='" << time_used << "', `memory`='" << memory_used << "', `pass_rate`='" << passRate << "', `compile_info`='" << runTimeInfo << "' WHERE `sid`=" << solutionId;
         this->sql = sstream.str();
         this->sstream.str("");
         mysql_real_query(this->mysqlConn, this->sql.c_str(), this->sql.size());
@@ -186,7 +186,7 @@ namespace lazyoj {
     }
 
     void Database::changeToOLE(string solutionId, long long time_used, long long memory_used, string runTimeInfo, double passRate) {
-        this->sstream << "UPDATE `solution` SET `result`=9, `time`='" << time_used << "', `memory`='" << memory_used << "', `pass_rate`='" << passRate << "' WHERE `sid`=" << solutionId;
+        this->sstream << "UPDATE `solution` SET `result`=9, `time`='" << time_used << "', `memory`='" << memory_used << "', `pass_rate`='" << passRate << "', `compile_info`='" << runTimeInfo << "' WHERE `sid`=" << solutionId;
         this->sql = sstream.str();
         this->sstream.str("");
         mysql_real_query(this->mysqlConn, this->sql.c_str(), this->sql.size());
@@ -194,7 +194,7 @@ namespace lazyoj {
     }
 
     void Database::changeToRE(string solutionId, long long time_used, long long memory_used, string runTimeInfo, double passRate) {
-        this->sstream << "UPDATE `solution` SET `result`=10, `time`='" << time_used << "', `memory`='" << memory_used << "', `pass_rate`='" << passRate << "' WHERE `sid`=" << solutionId;
+        this->sstream << "UPDATE `solution` SET `result`=10, `time`='" << time_used << "', `memory`='" << memory_used << "', `pass_rate`='" << passRate << "', `compile_info`='" << runTimeInfo << "' WHERE `sid`=" << solutionId;
         this->sql = sstream.str();
         this->sstream.str("");
         mysql_real_query(this->mysqlConn, this->sql.c_str(), this->sql.size());

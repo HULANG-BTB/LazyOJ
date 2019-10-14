@@ -47,7 +47,7 @@ export default {
           console.log(this.formData)
         }
       } else {
-        this.$router.replace({name: 'ProblemDetail'})
+        this.$router.push({name: 'StatusList', query: {id: this.id}})
       }
     },
     async submit () {
